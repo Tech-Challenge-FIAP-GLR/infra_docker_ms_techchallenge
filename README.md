@@ -7,8 +7,8 @@ Nesse repositório concentramos nossos arquivo docker-compose.yml para facilitar
 3. Acessar as URLs para chamadas indicadas abaixo.
 
 Microsserviços que esse repositório administra:
-https://github.com/Tech-Challenge-FIAP-GLR/producao_ms_techchallenge/blob/main/README.md
-https://github.com/Tech-Challenge-FIAP-GLR/pagamentos_ms_techchallenge/blob/main/README.md
-https://github.com/Tech-Challenge-FIAP-GLR/pedidos_ms_techchallenge/blob/main/README.md
+* https://github.com/Tech-Challenge-FIAP-GLR/producao_ms_techchallenge/blob/main/README.md
+* https://github.com/Tech-Challenge-FIAP-GLR/pagamentos_ms_techchallenge/blob/main/README.md
+* https://github.com/Tech-Challenge-FIAP-GLR/pedidos_ms_techchallenge/blob/main/README.md
 
 
