@@ -50,10 +50,15 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb-pagamentos:3306/techchallenge_pagamentos?createDatabaseIfNotExist=true&characterEncoding=UTF-8&rewriteBatchedStatements=true&enabledTLSProtocols=TLSv1,TLSv1.1,TLSv1.2
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 170593
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
     networks:
       - rede
     depends_on:
       - mysqldb-pagamentos
+      - rabbitmq
     volumes:
       - .m2:/root/.m2
   mongodb-prod:
@@ -79,3 +84,14 @@ services:
       - mongodb-prod
     volumes:
       - .m2:/root/.m2
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    volumes:
+      - ./init/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./init/definitions.json:/etc/rabbitmq/definitions.json:ro
+    ports:
+      - "15672:15672" # Management UI
+      - "5672:5672"   # Default RabbitMQ Port
+    networks:
+      - rede
