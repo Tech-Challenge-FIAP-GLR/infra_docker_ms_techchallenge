@@ -26,11 +26,29 @@
       "arguments": {
         "x-queue-type": "classic"
       }
+    },
+    {
+      "name": "producao_ms_pedido_finalizado",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
     }
   ],
   "exchanges": [
     {
       "name": "pagamentos_ms_exchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "producao_ms_exchange",
       "vhost": "/",
       "type": "direct",
       "durable": true,
@@ -62,6 +80,14 @@
       "destination": "pagamentos_ms_payment_fail",
       "destination_type": "queue",
       "routing_key": "fail",
+      "arguments": {}
+    },
+    {
+      "source": "producao_ms_exchange",
+      "vhost": "/",
+      "destination": "producao_ms_pedido_finalizado",
+      "destination_type": "queue", 
+      "routing_key": "pedido_finalizado",
       "arguments": {}
     }
   ],
