@@ -1,0 +1,93 @@
+{
+  "queues": [
+    {
+      "name": "pagamentos_ms_pedido_success",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "pagamentos_ms_producao_success",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    },
+    {
+      "name": "pagamentos_ms_payment_fail",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "classic"
+      }
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "pagamentos_ms_exchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "pagamentos_ms_exchange",
+      "vhost": "/",
+      "destination": "pagamentos_ms_pedido_success",
+      "destination_type": "queue",
+      "routing_key": "success",
+      "arguments": {}
+    },
+    {
+      "source": "pagamentos_ms_exchange",
+      "vhost": "/",
+      "destination": "pagamentos_ms_producao_success",
+      "destination_type": "queue",
+      "routing_key": "success",
+      "arguments": {}
+    },
+    {
+      "source": "pagamentos_ms_exchange",
+      "vhost": "/",
+      "destination": "pagamentos_ms_payment_fail",
+      "destination_type": "queue",
+      "routing_key": "fail",
+      "arguments": {}
+    }
+  ],
+  "users": [
+    {
+      "name": "guest",
+      "password_hash": "BMfxN8drrYcIqXZMr+pWTpDT0nMcOagMduLX0bjr4jwud/pN",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ]
+}
