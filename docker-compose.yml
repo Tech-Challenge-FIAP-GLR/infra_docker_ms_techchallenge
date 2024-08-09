@@ -20,6 +20,7 @@ services:
   pedidos-ms-app:
     depends_on:
       - mongodb
+      - rabbitmq
     image: raulima1/pedidos_ms_techchallenge:latest
     restart: always
     ports:
